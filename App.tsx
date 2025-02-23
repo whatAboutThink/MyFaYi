@@ -1,9 +1,9 @@
 import React from 'react';
+import { Provider } from 'react-redux'
+import { store } from './src/store/index'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from "./src/layouts/HomeScreen";
-import SettingScreen from "./src/layouts/SettingScreen";
 import SelfScreen from "./src/layouts/SelfScreen";
 import BottomTabNavigator from "./src/navigation/BottomTabNavigator";
 import Qualified from "./src/app/home/qualified";
@@ -19,19 +19,20 @@ const Tab = createBottomTabNavigator();
 
 export default function App(): React.JSX.Element {
   return (
+    <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator mode="modal">
-            <Stack.Screen name="home" options={{title:'主体',headerShown: false}} component={BottomTabNavigator} />
-            <Stack.Screen name="SelfScreen" options={{title:'用户列表'}} component={SelfScreen}/>
-            <Stack.Screen name="allBill" options={{title:'所有订单'}} component={SelfScreen}/>
-            <Stack.Screen name="qualified" options={{title:'合格登记'}} component={Qualified}/>
-            <Stack.Screen name="resetQualified" options={{title:'重登记合格'}} component={resetQualified}/>
-            <Stack.Screen name="unqualified" options={{title:'不合格登记'}} component={unQualified}/>
-            <Stack.Screen name="remove" options={{title:'移出'}} component={remove}/>
-            <Stack.Screen name="replenish" options={{title:'补货'}} component={replenish}/>
+          <Stack.Screen name="home" options={{ title: '主体', headerShown: false }} component={BottomTabNavigator} />
+          <Stack.Screen name="SelfScreen" options={{ title: '用户列表' }} component={SelfScreen} />
+          <Stack.Screen name="allBill" options={{ title: '所有订单' }} component={SelfScreen} />
+          <Stack.Screen name="qualified" options={{ title: '合格登记' }} component={Qualified} />
+          <Stack.Screen name="resetQualified" options={{ title: '重登记合格' }} component={resetQualified} />
+          <Stack.Screen name="unqualified" options={{ title: '不合格登记' }} component={unQualified} />
+          <Stack.Screen name="remove" options={{ title: '移出' }} component={remove} />
+          <Stack.Screen name="replenish" options={{ title: '补货' }} component={replenish} />
         </Stack.Navigator>
       </NavigationContainer>
-
+    </Provider>
   );
 }
 
